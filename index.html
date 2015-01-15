@@ -29,7 +29,7 @@
       <div class="inner clearfix">
         <section id="main-content">
           <h1>
-<a id="metainspector--" class="anchor" href="#metainspector--" aria-hidden="true"><span class="octicon octicon-link"></span></a>MetaInspector <a href="http://travis-ci.org/jaimeiniesta/metainspector"><img src="https://secure.travis-ci.org/jaimeiniesta/metainspector.png" alt="Build Status"></a> <a href="https://gemnasium.com/jaimeiniesta/metainspector"><img src="https://gemnasium.com/jaimeiniesta/metainspector.png" alt="Dependency Status"></a>
+<a id="metainspector---" class="anchor" href="#metainspector---" aria-hidden="true"><span class="octicon octicon-link"></span></a>MetaInspector <a href="http://travis-ci.org/jaimeiniesta/metainspector"><img src="https://secure.travis-ci.org/jaimeiniesta/metainspector.png" alt="Build Status"></a> <a href="https://gemnasium.com/jaimeiniesta/metainspector"><img src="https://gemnasium.com/jaimeiniesta/metainspector.png" alt="Dependency Status"></a> <a href="https://codeclimate.com/github/jaimeiniesta/metainspector"><img src="https://codeclimate.com/github/jaimeiniesta/metainspector/badges/gpa.svg" alt="Code Climate"></a>
 </h1>
 
 <p>MetaInspector is a gem for web scraping purposes.</p>
@@ -80,13 +80,11 @@ page.links.external <span class="pl-c"># Returns all external HTTP links found</
 
 <p>Install the gem from RubyGems:</p>
 
-<pre><code>gem install metainspector
-</code></pre>
+<div class="highlight highlight-bash"><pre>gem install metainspector</pre></div>
 
 <p>If you're using it on a Rails application, just add it to your Gemfile and run <code>bundle install</code></p>
 
-<pre><code>gem 'metainspector'
-</code></pre>
+<div class="highlight highlight-ruby"><pre><span class="pl-k">gem</span> <span class="pl-s1"><span class="pl-pds">'</span>metainspector<span class="pl-pds">'</span></span></pre></div>
 
 <p>This gem is tested on Ruby versions 2.0.0 and 2.1.3.</p>
 
@@ -95,18 +93,15 @@ page.links.external <span class="pl-c"># Returns all external HTTP links found</
 
 <p>Initialize a MetaInspector instance for an URL, like this:</p>
 
-<pre><code>page = MetaInspector.new('http://sitevalidator.com')
-</code></pre>
+<div class="highlight highlight-ruby"><pre>page <span class="pl-k">=</span> <span class="pl-s3">MetaInspector</span>.<span class="pl-k">new</span>(<span class="pl-s1"><span class="pl-pds">'</span>http://sitevalidator.com<span class="pl-pds">'</span></span>)</pre></div>
 
 <p>If you don't include the scheme on the URL, http:// will be used by default:</p>
 
-<pre><code>page = MetaInspector.new('sitevalidator.com')
-</code></pre>
+<div class="highlight highlight-ruby"><pre>page <span class="pl-k">=</span> <span class="pl-s3">MetaInspector</span>.<span class="pl-k">new</span>(<span class="pl-s1"><span class="pl-pds">'</span>sitevalidator.com<span class="pl-pds">'</span></span>)</pre></div>
 
 <p>You can also include the html which will be used as the document to scrape:</p>
 
-<pre><code>page = MetaInspector.new("http://sitevalidator.com", :document =&gt; "&lt;html&gt;&lt;head&gt;&lt;title&gt;Hello From Passed Html&lt;/title&gt;&lt;a href='/hello'&gt;Hello link&lt;/a&gt;&lt;/head&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;")
-</code></pre>
+<div class="highlight highlight-ruby"><pre>page <span class="pl-k">=</span> <span class="pl-s3">MetaInspector</span>.<span class="pl-k">new</span>(<span class="pl-s1"><span class="pl-pds">"</span>http://sitevalidator.com<span class="pl-pds">"</span></span>, <span class="pl-c1">:document</span> =&gt; <span class="pl-s1"><span class="pl-pds">"</span>&lt;html&gt;&lt;head&gt;&lt;title&gt;Hello From Passed Html&lt;/title&gt;&lt;a href='/hello'&gt;Hello link&lt;/a&gt;&lt;/head&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;<span class="pl-pds">"</span></span>)</pre></div>
 
 <h2>
 <a id="accessing-response-status-and-headers" class="anchor" href="#accessing-response-status-and-headers" aria-hidden="true"><span class="octicon octicon-link"></span></a>Accessing response status and headers</h2>
@@ -121,132 +116,125 @@ page.response.headers <span class="pl-c"># { "server"=&gt;"nginx", "content-type
 
 <p>You can see the scraped data like this:</p>
 
-<pre><code>page.url                 # URL of the page
-page.scheme              # Scheme of the page (http, https)
-page.host                # Hostname of the page (like, sitevalidator.com, without the scheme)
-page.root_url            # Root url (scheme + host, like http://sitevalidator.com/)
-page.title               # title of the page, as string
-page.links.raw           # every link found, unprocessed
-page.links.all           # every link found on the page as an absolute URL
-page.links.http          # every HTTP link found
-page.links.non_http      # every non-HTTP link found
-page.links.internal      # every internal link found on the page as an absolute URL
-page.links.external      # every external link found on the page as an absolute URL
-page.meta['keywords']    # meta keywords, as string
-page.meta['description'] # meta description, as string
-page.description         # returns the meta description, or the first long paragraph if no meta description is found
-page.images              # enumerable collection, with every img found on the page as an absolute URL
-page.images.best         # Most relevant image, if defined with the og:image or twitter:image metatags. Fallback to the first page.images array element
-page.images.favicon      # absolute URL to the favicon
-page.feed                # Get rss or atom links in meta data fields as array
-page.charset             # UTF-8
-page.content_type        # content-type returned by the server when the url was requested
-</code></pre>
+<div class="highlight highlight-ruby"><pre>page.url                 <span class="pl-c"># URL of the page</span>
+page.scheme              <span class="pl-c"># Scheme of the page (http, https)</span>
+page.host                <span class="pl-c"># Hostname of the page (like, sitevalidator.com, without the scheme)</span>
+page.root_url            <span class="pl-c"># Root url (scheme + host, like http://sitevalidator.com/)</span>
+page.title               <span class="pl-c"># title of the page, as string</span>
+page.links.raw           <span class="pl-c"># every link found, unprocessed</span>
+page.links.all           <span class="pl-c"># every link found on the page as an absolute URL</span>
+page.links.http          <span class="pl-c"># every HTTP link found</span>
+page.links.non_http      <span class="pl-c"># every non-HTTP link found</span>
+page.links.internal      <span class="pl-c"># every internal link found on the page as an absolute URL</span>
+page.links.external      <span class="pl-c"># every external link found on the page as an absolute URL</span>
+page.meta[<span class="pl-s1"><span class="pl-pds">'</span>keywords<span class="pl-pds">'</span></span>]    <span class="pl-c"># meta keywords, as string</span>
+page.meta[<span class="pl-s1"><span class="pl-pds">'</span>description<span class="pl-pds">'</span></span>] <span class="pl-c"># meta description, as string</span>
+page.description         <span class="pl-c"># returns the meta description, or the first long paragraph if no meta description is found</span>
+page.images              <span class="pl-c"># enumerable collection, with every img found on the page as an absolute URL</span>
+page.images.best         <span class="pl-c"># Most relevant image, if defined with the og:image or twitter:image metatags. Fallback to the first page.images array element</span>
+page.images.favicon      <span class="pl-c"># absolute URL to the favicon</span>
+page.feed                <span class="pl-c"># Get rss or atom links in meta data fields as array</span>
+page.charset             <span class="pl-c"># UTF-8</span>
+page.content_type        <span class="pl-c"># content-type returned by the server when the url was requested</span></pre></div>
 
 <h2>
 <a id="meta-tags" class="anchor" href="#meta-tags" aria-hidden="true"><span class="octicon octicon-link"></span></a>Meta tags</h2>
 
 <p>When it comes to meta tags, you have several options:</p>
 
-<pre><code>page.meta_tags          # Gives you all the meta tags by type:
-                        # (meta name, meta http-equiv, meta property and meta charset)
-                        # As meta tags can be repeated (in the case of 'og:image', for example),
-                        # the values returned will be arrays
-                        #
-                        # For example:
-                        #
-                        # {
-                            'name' =&gt; {
-                                        'keywords'       =&gt; ['one, two, three'],
-                                        'description'    =&gt; ['the description'],
-                                        'author'         =&gt; ['Joe Sample'],
-                                        'robots'         =&gt; ['index,follow'],
-                                        'revisit'        =&gt; ['15 days'],
-                                        'dc.date.issued' =&gt; ['2011-09-15']
-                                       },
+<div class="highlight highlight-ruby"><pre>page.meta_tags  <span class="pl-c"># Gives you all the meta tags by type:</span>
+                <span class="pl-c"># (meta name, meta http-equiv, meta property and meta charset)</span>
+                <span class="pl-c"># As meta tags can be repeated (in the case of 'og:image', for example),</span>
+                <span class="pl-c"># the values returned will be arrays</span>
+                <span class="pl-c">#</span>
+                <span class="pl-c"># For example:</span>
+                <span class="pl-c">#</span>
+                <span class="pl-c"># {</span>
+                    <span class="pl-s1"><span class="pl-pds">'</span>name<span class="pl-pds">'</span></span> =&gt; {
+                                <span class="pl-s1"><span class="pl-pds">'</span>keywords<span class="pl-pds">'</span></span>       =&gt; [<span class="pl-s1"><span class="pl-pds">'</span>one, two, three<span class="pl-pds">'</span></span>],
+                                <span class="pl-s1"><span class="pl-pds">'</span>description<span class="pl-pds">'</span></span>    =&gt; [<span class="pl-s1"><span class="pl-pds">'</span>the description<span class="pl-pds">'</span></span>],
+                                <span class="pl-s1"><span class="pl-pds">'</span>author<span class="pl-pds">'</span></span>         =&gt; [<span class="pl-s1"><span class="pl-pds">'</span>Joe Sample<span class="pl-pds">'</span></span>],
+                                <span class="pl-s1"><span class="pl-pds">'</span>robots<span class="pl-pds">'</span></span>         =&gt; [<span class="pl-s1"><span class="pl-pds">'</span>index,follow<span class="pl-pds">'</span></span>],
+                                <span class="pl-s1"><span class="pl-pds">'</span>revisit<span class="pl-pds">'</span></span>        =&gt; [<span class="pl-s1"><span class="pl-pds">'</span>15 days<span class="pl-pds">'</span></span>],
+                                <span class="pl-s1"><span class="pl-pds">'</span>dc.date.issued<span class="pl-pds">'</span></span> =&gt; [<span class="pl-s1"><span class="pl-pds">'</span>2011-09-15<span class="pl-pds">'</span></span>]
+                              },
 
-                            'http-equiv' =&gt; {
-                                              'content-type'        =&gt; ['text/html; charset=UTF-8'],
-                                              'content-style-type'  =&gt; ['text/css']
-                                            },
+                    <span class="pl-s1"><span class="pl-pds">'</span>http-equiv<span class="pl-pds">'</span></span> =&gt; {
+                                        <span class="pl-s1"><span class="pl-pds">'</span>content-type<span class="pl-pds">'</span></span>        =&gt; [<span class="pl-s1"><span class="pl-pds">'</span>text/html; charset=UTF-8<span class="pl-pds">'</span></span>],
+                                        <span class="pl-s1"><span class="pl-pds">'</span>content-style-type<span class="pl-pds">'</span></span>  =&gt; [<span class="pl-s1"><span class="pl-pds">'</span>text/css<span class="pl-pds">'</span></span>]
+                                    },
 
-                            'property' =&gt; {
-                                            'og:title'        =&gt; ['An OG title'],
-                                            'og:type'         =&gt; ['website'],
-                                            'og:url'          =&gt; ['http://example.com/meta-tags'],
-                                            'og:image'        =&gt; ['http://example.com/rock.jpg',
-                                                                  'http://example.com/rock2.jpg',
-                                                                  'http://example.com/rock3.jpg'],
-                                            'og:image:width'  =&gt; ['300'],
-                                            'og:image:height' =&gt; ['300', '1000']
-                                          },
+                    <span class="pl-s1"><span class="pl-pds">'</span>property<span class="pl-pds">'</span></span> =&gt; {
+                                    <span class="pl-s1"><span class="pl-pds">'</span>og:title<span class="pl-pds">'</span></span>        =&gt; [<span class="pl-s1"><span class="pl-pds">'</span>An OG title<span class="pl-pds">'</span></span>],
+                                    <span class="pl-s1"><span class="pl-pds">'</span>og:type<span class="pl-pds">'</span></span>         =&gt; [<span class="pl-s1"><span class="pl-pds">'</span>website<span class="pl-pds">'</span></span>],
+                                    <span class="pl-s1"><span class="pl-pds">'</span>og:url<span class="pl-pds">'</span></span>          =&gt; [<span class="pl-s1"><span class="pl-pds">'</span>http://example.com/meta-tags<span class="pl-pds">'</span></span>],
+                                    <span class="pl-s1"><span class="pl-pds">'</span>og:image<span class="pl-pds">'</span></span>        =&gt; [<span class="pl-s1"><span class="pl-pds">'</span>http://example.com/rock.jpg<span class="pl-pds">'</span></span>,
+                                                          <span class="pl-s1"><span class="pl-pds">'</span>http://example.com/rock2.jpg<span class="pl-pds">'</span></span>,
+                                                          <span class="pl-s1"><span class="pl-pds">'</span>http://example.com/rock3.jpg<span class="pl-pds">'</span></span>],
+                                    <span class="pl-s1"><span class="pl-pds">'</span>og:image:width<span class="pl-pds">'</span></span>  =&gt; [<span class="pl-s1"><span class="pl-pds">'</span>300<span class="pl-pds">'</span></span>],
+                                    <span class="pl-s1"><span class="pl-pds">'</span>og:image:height<span class="pl-pds">'</span></span> =&gt; [<span class="pl-s1"><span class="pl-pds">'</span>300<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>1000<span class="pl-pds">'</span></span>]
+                                   },
 
-                            'charset' =&gt; ['UTF-8']
-                          }
-</code></pre>
+                    <span class="pl-s1"><span class="pl-pds">'</span>charset<span class="pl-pds">'</span></span> =&gt; [<span class="pl-s1"><span class="pl-pds">'</span>UTF-8<span class="pl-pds">'</span></span>]
+                  }</pre></div>
 
 <p>As this method returns a hash, you can also take only the key that you need, like in:</p>
 
-<pre><code>page.meta_tags['property']  # Returns:
-                            # {
-                            #   'og:title'        =&gt; ['An OG title'],
-                            #   'og:type'         =&gt; ['website'],
-                            #   'og:url'          =&gt; ['http://example.com/meta-tags'],
-                            #   'og:image'        =&gt; ['http://example.com/rock.jpg',
-                            #                         'http://example.com/rock2.jpg',
-                            #                         'http://example.com/rock3.jpg'],
-                            #   'og:image:width'  =&gt; ['300'],
-                            #   'og:image:height' =&gt; ['300', '1000']
-                            # }
-</code></pre>
+<div class="highlight highlight-ruby"><pre>page.meta_tags[<span class="pl-s1"><span class="pl-pds">'</span>property<span class="pl-pds">'</span></span>]  <span class="pl-c"># Returns:</span>
+                            <span class="pl-c"># {</span>
+                            <span class="pl-c">#   'og:title'        =&gt; ['An OG title'],</span>
+                            <span class="pl-c">#   'og:type'         =&gt; ['website'],</span>
+                            <span class="pl-c">#   'og:url'          =&gt; ['http://example.com/meta-tags'],</span>
+                            <span class="pl-c">#   'og:image'        =&gt; ['http://example.com/rock.jpg',</span>
+                            <span class="pl-c">#                         'http://example.com/rock2.jpg',</span>
+                            <span class="pl-c">#                         'http://example.com/rock3.jpg'],</span>
+                            <span class="pl-c">#   'og:image:width'  =&gt; ['300'],</span>
+                            <span class="pl-c">#   'og:image:height' =&gt; ['300', '1000']</span>
+                            <span class="pl-c"># }</span></pre></div>
 
 <p>In most cases you will only be interested in the first occurrence of a meta tag, so you can
 use the singular form of that method:</p>
 
-<pre><code>page.meta_tag['name']  # Returns:
-                       # {
-                       #   'keywords'       =&gt; 'one, two, three',
-                       #   'description'    =&gt; 'the description',
-                       #   'author'         =&gt; 'Joe Sample',
-                       #   'robots'         =&gt; 'index,follow',
-                       #   'revisit'        =&gt; '15 days',
-                       #   'dc.date.issued' =&gt; '2011-09-15'
-                       #  }
-</code></pre>
+<div class="highlight highlight-ruby"><pre>page.meta_tag[<span class="pl-s1"><span class="pl-pds">'</span>name<span class="pl-pds">'</span></span>]   <span class="pl-c"># Returns:</span>
+                        <span class="pl-c"># {</span>
+                        <span class="pl-c">#   'keywords'       =&gt; 'one, two, three',</span>
+                        <span class="pl-c">#   'description'    =&gt; 'the description',</span>
+                        <span class="pl-c">#   'author'         =&gt; 'Joe Sample',</span>
+                        <span class="pl-c">#   'robots'         =&gt; 'index,follow',</span>
+                        <span class="pl-c">#   'revisit'        =&gt; '15 days',</span>
+                        <span class="pl-c">#   'dc.date.issued' =&gt; '2011-09-15'</span>
+                        <span class="pl-c"># }</span></pre></div>
 
 <p>Or, as this is also a hash:</p>
 
-<pre><code>page.meta_tag['name']['keywords']    # Returns 'one, two, three'
-</code></pre>
+<div class="highlight highlight-ruby"><pre>page.meta_tag[<span class="pl-s1"><span class="pl-pds">'</span>name<span class="pl-pds">'</span></span>][<span class="pl-s1"><span class="pl-pds">'</span>keywords<span class="pl-pds">'</span></span>]    <span class="pl-c"># Returns 'one, two, three'</span></pre></div>
 
 <p>And finally, you can use the shorter <code>meta</code> method that will merge the different keys so you have
 a simpler hash:</p>
 
-<pre><code>page.meta       # Returns:
-                #
-                # {
-                #     'keywords'            =&gt; 'one, two, three',
-                #     'description'         =&gt; 'the description',
-                #     'author'              =&gt; 'Joe Sample',
-                #     'robots'              =&gt; 'index,follow',
-                #     'revisit'             =&gt; '15 days',
-                #     'dc.date.issued'      =&gt; '2011-09-15',
-                #     'content-type'        =&gt; 'text/html; charset=UTF-8',
-                #     'content-style-type'  =&gt; 'text/css',
-                #     'og:title'            =&gt; 'An OG title',
-                #     'og:type'             =&gt; 'website',
-                #     'og:url'              =&gt; 'http://example.com/meta-tags',
-                #     'og:image'            =&gt; 'http://example.com/rock.jpg',
-                #     'og:image:width'      =&gt; '300',
-                #     'og:image:height'     =&gt; '300',
-                #     'charset'             =&gt; 'UTF-8'
-                #   }
-</code></pre>
+<div class="highlight highlight-ruby"><pre>page.meta   <span class="pl-c"># Returns:</span>
+            <span class="pl-c">#</span>
+            <span class="pl-c"># {</span>
+            <span class="pl-c">#   'keywords'            =&gt; 'one, two, three',</span>
+            <span class="pl-c">#   'description'         =&gt; 'the description',</span>
+            <span class="pl-c">#   'author'              =&gt; 'Joe Sample',</span>
+            <span class="pl-c">#   'robots'              =&gt; 'index,follow',</span>
+            <span class="pl-c">#   'revisit'             =&gt; '15 days',</span>
+            <span class="pl-c">#   'dc.date.issued'      =&gt; '2011-09-15',</span>
+            <span class="pl-c">#   'content-type'        =&gt; 'text/html; charset=UTF-8',</span>
+            <span class="pl-c">#   'content-style-type'  =&gt; 'text/css',</span>
+            <span class="pl-c">#   'og:title'            =&gt; 'An OG title',</span>
+            <span class="pl-c">#   'og:type'             =&gt; 'website',</span>
+            <span class="pl-c">#   'og:url'              =&gt; 'http://example.com/meta-tags',</span>
+            <span class="pl-c">#   'og:image'            =&gt; 'http://example.com/rock.jpg',</span>
+            <span class="pl-c">#   'og:image:width'      =&gt; '300',</span>
+            <span class="pl-c">#   'og:image:height'     =&gt; '300',</span>
+            <span class="pl-c">#   'charset'             =&gt; 'UTF-8'</span>
+            <span class="pl-c"># }</span></pre></div>
 
 <p>This way, you can get most meta tags just like that:</p>
 
-<pre><code>page.meta['author']     # Returns "Joe Sample"
-</code></pre>
+<div class="highlight highlight-ruby"><pre>page.meta[<span class="pl-s1"><span class="pl-pds">'</span>author<span class="pl-pds">'</span></span>]     <span class="pl-c"># Returns "Joe Sample"</span></pre></div>
 
 <p>Please be aware that all keys are converted to downcase, so it's <code>'dc.date.issued'</code> and not <code>'DC.date.issued'</code>.</p>
 
@@ -255,19 +243,16 @@ a simpler hash:</p>
 
 <p>You can also access most of the scraped data as a hash:</p>
 
-<pre><code>page.to_hash  # { "url"   =&gt; "http://sitevalidator.com",
-                  "title" =&gt; "MarkupValidator :: site-wide markup validation tool", ... }
-</code></pre>
+<div class="highlight highlight-ruby"><pre>page.to_hash    <span class="pl-c"># { "url"   =&gt; "http://sitevalidator.com",</span>
+                    <span class="pl-s1"><span class="pl-pds">"</span>title<span class="pl-pds">"</span></span> =&gt; <span class="pl-s1"><span class="pl-pds">"</span>MarkupValidator :: site-wide markup validation tool<span class="pl-pds">"</span></span>, ... }</pre></div>
 
 <p>The original document is accessible from:</p>
 
-<pre><code>page.to_s         # A String with the contents of the HTML document
-</code></pre>
+<div class="highlight highlight-ruby"><pre>page.to_s         <span class="pl-c"># A String with the contents of the HTML document</span></pre></div>
 
 <p>And the full scraped document is accessible from:</p>
 
-<pre><code>page.parsed  # Nokogiri doc that you can use it to get any element from the page
-</code></pre>
+<div class="highlight highlight-ruby"><pre>page.parsed  <span class="pl-c"># Nokogiri doc that you can use it to get any element from the page</span></pre></div>
 
 <h2>
 <a id="options" class="anchor" href="#options" aria-hidden="true"><span class="octicon octicon-link"></span></a>Options</h2>
@@ -313,44 +298,56 @@ application code.</p>
 
 <p>If you want to disallow redirects, you can do it like this:</p>
 
-<pre><code>page = MetaInspector.new('facebook.com', :allow_redirections =&gt; false)
-</code></pre>
+<div class="highlight highlight-ruby"><pre>page <span class="pl-k">=</span> <span class="pl-s3">MetaInspector</span>.<span class="pl-k">new</span>(<span class="pl-s1"><span class="pl-pds">'</span>facebook.com<span class="pl-pds">'</span></span>, <span class="pl-c1">:allow_redirections</span> =&gt; <span class="pl-c1">false</span>)</pre></div>
 
 <h3>
 <a id="headers" class="anchor" href="#headers" aria-hidden="true"><span class="octicon octicon-link"></span></a>Headers</h3>
 
 <p>By default, the following headers are set:</p>
 
-<pre><code>{'User-Agent' =&gt; "MetaInspector/#{MetaInspector::VERSION} (+https://github.com/jaimeiniesta/metainspector)"}
-</code></pre>
+<div class="highlight highlight-ruby"><pre>{<span class="pl-s1"><span class="pl-pds">'</span>User-Agent<span class="pl-pds">'</span></span> =&gt; <span class="pl-s1"><span class="pl-pds">"</span>MetaInspector/<span class="pl-pse">#{</span><span class="pl-s2"><span class="pl-s3">MetaInspector</span>::<span class="pl-vo">VERSION</span></span><span class="pl-pse"><span class="pl-s2">}</span></span> (+https://github.com/jaimeiniesta/metainspector)<span class="pl-pds">"</span></span>}</pre></div>
 
 <p>If you want to set custom headers then use the <code>headers</code> option:</p>
 
-<pre><code> # Set the User-Agent header
- page = MetaInspector.new('example.com', :headers =&gt; {'User-Agent' =&gt; 'My custom User-Agent'})
-</code></pre>
+<div class="highlight highlight-ruby"><pre><span class="pl-c"># Set the User-Agent header</span>
+page <span class="pl-k">=</span> <span class="pl-s3">MetaInspector</span>.<span class="pl-k">new</span>(<span class="pl-s1"><span class="pl-pds">'</span>example.com<span class="pl-pds">'</span></span>, <span class="pl-c1">:headers</span> =&gt; {<span class="pl-s1"><span class="pl-pds">'</span>User-Agent<span class="pl-pds">'</span></span> =&gt; <span class="pl-s1"><span class="pl-pds">'</span>My custom User-Agent<span class="pl-pds">'</span></span>})</pre></div>
 
 <h3>
 <a id="html-content-only" class="anchor" href="#html-content-only" aria-hidden="true"><span class="octicon octicon-link"></span></a>HTML Content Only</h3>
 
 <p>MetaInspector will try to parse all URLs by default. If you want to raise an exception when trying to parse a non-html URL (one that has a content-type different than text/html), you can state it like this:</p>
 
-<pre><code>page = MetaInspector.new('sitevalidator.com', :html_content_only =&gt; true)
-</code></pre>
+<div class="highlight highlight-ruby"><pre>page <span class="pl-k">=</span> <span class="pl-s3">MetaInspector</span>.<span class="pl-k">new</span>(<span class="pl-s1"><span class="pl-pds">'</span>sitevalidator.com<span class="pl-pds">'</span></span>, <span class="pl-c1">:html_content_only</span> =&gt; <span class="pl-c1">true</span>)</pre></div>
 
 <p>This is useful when using MetaInspector on web spidering. Although on the initial URL you'll probably have an HTML URL, following links you may find yourself trying to parse non-html URLs.</p>
 
-<pre><code>page = MetaInspector.new('http://example.com/image.png')
-page.content_type  # "image/png"
-page.description   # will returned a garbled string
+<div class="highlight highlight-ruby"><pre>page <span class="pl-k">=</span> <span class="pl-s3">MetaInspector</span>.<span class="pl-k">new</span>(<span class="pl-s1"><span class="pl-pds">'</span>http://example.com/image.png<span class="pl-pds">'</span></span>)
+page.content_type  <span class="pl-c"># "image/png"</span>
+page.description   <span class="pl-c"># will returned a garbled string</span>
 
-page = MetaInspector.new('http://example.com/image.png', :html_content_only =&gt; true)
-page.content_type  # "image/png"
-page.description   # raises an exception
-</code></pre>
+page <span class="pl-k">=</span> <span class="pl-s3">MetaInspector</span>.<span class="pl-k">new</span>(<span class="pl-s1"><span class="pl-pds">'</span>http://example.com/image.png<span class="pl-pds">'</span></span>, <span class="pl-c1">:html_content_only</span> =&gt; <span class="pl-c1">true</span>)
+page.content_type  <span class="pl-c"># "image/png"</span>
+page.description   <span class="pl-c"># raises an exception</span></pre></div>
+
+<h3>
+<a id="url-normalization" class="anchor" href="#url-normalization" aria-hidden="true"><span class="octicon octicon-link"></span></a>URL Normalization</h3>
+
+<p>By default, URLs are normalized using the Addressable gem. For example:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="pl-c"># Normalization will add a default scheme and a trailing slash...</span>
+page <span class="pl-k">=</span> <span class="pl-s3">MetaInspector</span>.<span class="pl-k">new</span>(<span class="pl-s1"><span class="pl-pds">'</span>sitevalidator.com<span class="pl-pds">'</span></span>)
+page.url <span class="pl-c"># http://sitevalidator.com/</span>
+
+<span class="pl-c"># ...and it will also convert international characters</span>
+page <span class="pl-k">=</span> <span class="pl-s3">MetaInspector</span>.<span class="pl-k">new</span>(<span class="pl-s1"><span class="pl-pds">'</span>http://www.詹姆斯.com<span class="pl-pds">'</span></span>)
+page.url <span class="pl-c"># http://www.xn--8ws00zhy3a.com/</span></pre></div>
+
+<p>While this is generally useful, it can be <a href="https://github.com/sporkmonger/addressable/issues/182">tricky</a> <a href="https://github.com/sporkmonger/addressable/issues/160">sometimes</a>.</p>
+
+<p>You can disable URL normalization by passing the <code>normalize_url: false</code> option.</p>
 
 <h2>
-<a id="exception-handling" class="anchor" href="#exception-handling" aria-hidden="true"><span class="octicon octicon-link"></span></a>Exception handling</h2>
+<a id="exception-handling" class="anchor" href="#exception-handling" aria-hidden="true"><span class="octicon octicon-link"></span></a>Exception Handling</h2>
 
 <p>By default, MetaInspector will raise the exceptions found. We think that this is the safest default: in case the URL you're trying to scrape is unreachable, you should clearly be notified, and treat the exception as needed in your app.</p>
 
@@ -365,28 +362,27 @@ page.description   # raises an exception
 
 <p>You can find some sample scripts on the <code>examples</code> folder, including a basic scraping and a spider that will follow external links using a queue. What follows is an example of use from irb:</p>
 
-<pre><code>$ irb
-&gt;&gt; require 'metainspector'
-=&gt; true
+<div class="highlight highlight-ruby"><pre>$ irb
+<span class="pl-k">&gt;&gt;</span> <span class="pl-k">require</span> <span class="pl-s1"><span class="pl-pds">'</span>metainspector<span class="pl-pds">'</span></span>
+=&gt; <span class="pl-c1">true</span>
 
-&gt;&gt; page = MetaInspector.new('http://sitevalidator.com')
-=&gt; #&lt;MetaInspector:0x11330c0 @url="http://sitevalidator.com"&gt;
+<span class="pl-k">&gt;&gt;</span> page <span class="pl-k">=</span> <span class="pl-s3">MetaInspector</span>.<span class="pl-k">new</span>(<span class="pl-s1"><span class="pl-pds">'</span>http://sitevalidator.com<span class="pl-pds">'</span></span>)
+=&gt; <span class="pl-c">#&lt;MetaInspector:0x11330c0 @url="http://sitevalidator.com"&gt;</span>
 
-&gt;&gt; page.title
-=&gt; "MarkupValidator :: site-wide markup validation tool"
+<span class="pl-k">&gt;&gt;</span> page.title
+=&gt; <span class="pl-s1"><span class="pl-pds">"</span>MarkupValidator :: site-wide markup validation tool<span class="pl-pds">"</span></span>
 
-&gt;&gt; page.meta['description']
-=&gt; "Site-wide markup validation tool. Validate the markup of your whole site with just one click."
+<span class="pl-k">&gt;&gt;</span> page.meta[<span class="pl-s1"><span class="pl-pds">'</span>description<span class="pl-pds">'</span></span>]
+=&gt; <span class="pl-s1"><span class="pl-pds">"</span>Site-wide markup validation tool. Validate the markup of your whole site with just one click.<span class="pl-pds">"</span></span>
 
-&gt;&gt; page.meta['keywords']
-=&gt; "html, markup, validation, validator, tool, w3c, development, standards, free"
+<span class="pl-k">&gt;&gt;</span> page.meta[<span class="pl-s1"><span class="pl-pds">'</span>keywords<span class="pl-pds">'</span></span>]
+=&gt; <span class="pl-s1"><span class="pl-pds">"</span>html, markup, validation, validator, tool, w3c, development, standards, free<span class="pl-pds">"</span></span>
 
-&gt;&gt; page.links.size
-=&gt; 15
+<span class="pl-k">&gt;&gt;</span> page.links.size
+=&gt; <span class="pl-c1">15</span>
 
-&gt;&gt; page.links[4]
-=&gt; "/plans-and-pricing"
-</code></pre>
+<span class="pl-k">&gt;&gt;</span> page.links[<span class="pl-c1">4</span>]
+=&gt; <span class="pl-s1"><span class="pl-pds">"</span>/plans-and-pricing<span class="pl-pds">"</span></span></pre></div>
 
 <h2>
 <a id="zomg-fork-thank-you" class="anchor" href="#zomg-fork-thank-you" aria-hidden="true"><span class="octicon octicon-link"></span></a>ZOMG Fork! Thank you!</h2>
