@@ -42,6 +42,30 @@
 <p>You can try MetaInspector live at this little demo: <a href="https://metainspectordemo.herokuapp.com">https://metainspectordemo.herokuapp.com</a></p>
 
 <h2>
+<a id="changes-in-420" class="anchor" href="#changes-in-420" aria-hidden="true"><span class="octicon octicon-link"></span></a>Changes in 4.2.0</h2>
+
+<ul>
+<li>
+<p>The images API has been extended, with two new methods:</p>
+
+<ul>
+<li>
+<code>page.images.owner_suggested</code> returns the OG or Twitter image, or <code>nil</code> if neither are present.</li>
+<li>
+<code>page.images.largest</code> returns the largest image found in the page. This uses the HTML height and width attributes as well as the <a href="https://github.com/sdsykes/fastimage">fastimage</a> gem to return the largest image on the page that has a ratio squarer than 1:10 or 10:1. This usually provides a good alternative to the OG or Twitter images if they are not supplied.</li>
+</ul>
+</li>
+<li><p>The criteria for <code>page.images.best</code> has changed slightly, we'll now return the largest image instead of the first image if no owner-suggested image is found.</p></li>
+</ul>
+
+<h2>
+<a id="changes-in-410" class="anchor" href="#changes-in-410" aria-hidden="true"><span class="octicon octicon-link"></span></a>Changes in 4.1.0</h2>
+
+<ul>
+<li>Introduces the <code>:normalize_url</code> option, which allows to disable URL normalization.</li>
+</ul>
+
+<h2>
 <a id="changes-in-40" class="anchor" href="#changes-in-40" aria-hidden="true"><span class="octicon octicon-link"></span></a>Changes in 4.0</h2>
 
 <ul>
@@ -345,6 +369,15 @@ page.url <span class="pl-c"># http://www.xn--8ws00zhy3a.com/</span></pre></div>
 <p>While this is generally useful, it can be <a href="https://github.com/sporkmonger/addressable/issues/182">tricky</a> <a href="https://github.com/sporkmonger/addressable/issues/160">sometimes</a>.</p>
 
 <p>You can disable URL normalization by passing the <code>normalize_url: false</code> option.</p>
+
+<h3>
+<a id="image-downloading" class="anchor" href="#image-downloading" aria-hidden="true"><span class="octicon octicon-link"></span></a>Image downloading</h3>
+
+<p>When you ask for the largest image on the page with <code>page.images.largest</code>, it will be determined by its height and width attributes on the HTML markup, and also by downloading a small portion of each image using the <a href="https://github.com/sdsykes/fastimage">fastimage</a> gem. This is really fast as it doesn't download the entire images, normally just the headers of the image files.</p>
+
+<p>If you want to disable this, you can specify it like this:</p>
+
+<div class="highlight highlight-ruby"><pre>page <span class="pl-k">=</span> <span class="pl-s3">MetaInspector</span>.<span class="pl-k">new</span>(<span class="pl-s1"><span class="pl-pds">'</span>http://example.com<span class="pl-pds">'</span></span>, <span class="pl-c1">download_images:</span> <span class="pl-c1">false</span>)</pre></div>
 
 <h2>
 <a id="exception-handling" class="anchor" href="#exception-handling" aria-hidden="true"><span class="octicon octicon-link"></span></a>Exception Handling</h2>
