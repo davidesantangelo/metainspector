@@ -42,7 +42,16 @@
 <p>You can try MetaInspector live at this little demo: <a href="https://metainspectordemo.herokuapp.com">https://metainspectordemo.herokuapp.com</a></p>
 
 <h2>
-<a id="changes-in-420" class="anchor" href="#changes-in-420" aria-hidden="true"><span class="octicon octicon-link"></span></a>Changes in 4.2.0</h2>
+<a id="changes-in-43" class="anchor" href="#changes-in-43" aria-hidden="true"><span class="octicon octicon-link"></span></a>Changes in 4.3</h2>
+
+<ul>
+<li>The Document API has been extended with one new method <code>page.best_title</code> that returns the longest text available from a selection of candidates.</li>
+<li>
+<code>to_hash</code> now includes <code>scheme</code>, <code>host</code>, <code>root_url</code>, <code>best_title</code> and <code>description</code>.</li>
+</ul>
+
+<h2>
+<a id="changes-in-42" class="anchor" href="#changes-in-42" aria-hidden="true"><span class="octicon octicon-link"></span></a>Changes in 4.2</h2>
 
 <ul>
 <li>
@@ -59,7 +68,7 @@
 </ul>
 
 <h2>
-<a id="changes-in-410" class="anchor" href="#changes-in-410" aria-hidden="true"><span class="octicon octicon-link"></span></a>Changes in 4.1.0</h2>
+<a id="changes-in-41" class="anchor" href="#changes-in-41" aria-hidden="true"><span class="octicon octicon-link"></span></a>Changes in 4.1</h2>
 
 <ul>
 <li>Introduces the <code>:normalize_url</code> option, which allows to disable URL normalization.</li>
@@ -144,7 +153,8 @@ page.response.headers <span class="pl-c"># { "server"=&gt;"nginx", "content-type
 page.scheme              <span class="pl-c"># Scheme of the page (http, https)</span>
 page.host                <span class="pl-c"># Hostname of the page (like, sitevalidator.com, without the scheme)</span>
 page.root_url            <span class="pl-c"># Root url (scheme + host, like http://sitevalidator.com/)</span>
-page.title               <span class="pl-c"># title of the page, as string</span>
+page.title               <span class="pl-c"># title of the page from the head section, as string</span>
+page.best_title          <span class="pl-c"># best title of the page, from a selection of candidates</span>
 page.links.raw           <span class="pl-c"># every link found, unprocessed</span>
 page.links.all           <span class="pl-c"># every link found on the page as an absolute URL</span>
 page.links.http          <span class="pl-c"># every HTTP link found</span>
@@ -418,15 +428,23 @@ page.url <span class="pl-c"># http://www.xn--8ws00zhy3a.com/</span></pre></div>
 =&gt; <span class="pl-s1"><span class="pl-pds">"</span>/plans-and-pricing<span class="pl-pds">"</span></span></pre></div>
 
 <h2>
-<a id="zomg-fork-thank-you" class="anchor" href="#zomg-fork-thank-you" aria-hidden="true"><span class="octicon octicon-link"></span></a>ZOMG Fork! Thank you!</h2>
+<a id="contributing-guidelines" class="anchor" href="#contributing-guidelines" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributing guidelines</h2>
 
-<p>You're welcome to fork this project and send pull requests. Just remember to include specs.</p>
+<p>You're more than welcome to fork this project and send pull requests. Just remember to:</p>
+
+<ul>
+<li>Create a topic branch for your changes.</li>
+<li>Add specs.</li>
+<li>Keep your fake responses as small as possible. For each change in <code>spec/fixtures</code>, a comment should be included explaining why it's needed.</li>
+<li>Update <code>version.rb</code>, following the <a href="http://semver.org/">semantic versioning convention</a>.</li>
+<li>Update <code>README.md</code> if needed (for example, when you're adding or changing a feature).</li>
+</ul>
 
 <p>Thanks to all the contributors:</p>
 
 <p><a href="https://github.com/jaimeiniesta/metainspector/graphs/contributors">https://github.com/jaimeiniesta/metainspector/graphs/contributors</a></p>
 
-<p>You are more than welcome to come chat with us on our <a href="https://gitter.im/jaimeiniesta/metainspector">Gitter room</a> and <a href="https://groups.google.com/forum/#!forum/metainspector">Google group</a>.</p>
+<p>You can also come to chat with us on our <a href="https://gitter.im/jaimeiniesta/metainspector">Gitter room</a> and <a href="https://groups.google.com/forum/#!forum/metainspector">Google group</a>.</p>
 
 <h2>
 <a id="related-projects" class="anchor" href="#related-projects" aria-hidden="true"><span class="octicon octicon-link"></span></a>Related projects</h2>
