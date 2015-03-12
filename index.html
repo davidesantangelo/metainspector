@@ -42,6 +42,11 @@
 <p>You can try MetaInspector live at this little demo: <a href="https://metainspectordemo.herokuapp.com">https://metainspectordemo.herokuapp.com</a></p>
 
 <h2>
+<a id="changes-in-44" class="anchor" href="#changes-in-44" aria-hidden="true"><span class="octicon octicon-link"></span></a>Changes in 4.4</h2>
+
+<p>The default headers now include <code>'Accept-Encoding' =&gt; 'identity'</code> to minimize trouble with servers that respond with malformed compressed responses, <a href="https://github.com/lostisland/faraday/issues/337">as explained here</a>.</p>
+
+<h2>
 <a id="changes-in-43" class="anchor" href="#changes-in-43" aria-hidden="true"><span class="octicon octicon-link"></span></a>Changes in 4.3</h2>
 
 <ul>
@@ -339,9 +344,14 @@ application code.</p>
 
 <p>By default, the following headers are set:</p>
 
-<div class="highlight highlight-ruby"><pre>{<span class="pl-s1"><span class="pl-pds">'</span>User-Agent<span class="pl-pds">'</span></span> =&gt; <span class="pl-s1"><span class="pl-pds">"</span>MetaInspector/<span class="pl-pse">#{</span><span class="pl-s2"><span class="pl-s3">MetaInspector</span>::<span class="pl-vo">VERSION</span></span><span class="pl-pse"><span class="pl-s2">}</span></span> (+https://github.com/jaimeiniesta/metainspector)<span class="pl-pds">"</span></span>}</pre></div>
+<div class="highlight highlight-ruby"><pre>{
+  <span class="pl-s1"><span class="pl-pds">'</span>User-Agent<span class="pl-pds">'</span></span>      =&gt; <span class="pl-s1"><span class="pl-pds">"</span>MetaInspector/<span class="pl-pse">#{</span><span class="pl-s2"><span class="pl-s3">MetaInspector</span>::<span class="pl-vo">VERSION</span></span><span class="pl-pse"><span class="pl-s2">}</span></span> (+https://github.com/jaimeiniesta/metainspector)<span class="pl-pds">"</span></span>,
+  <span class="pl-s1"><span class="pl-pds">'</span>Accept-Encoding<span class="pl-pds">'</span></span> =&gt; <span class="pl-s1"><span class="pl-pds">'</span>identity<span class="pl-pds">'</span></span>
+}</pre></div>
 
-<p>If you want to set custom headers then use the <code>headers</code> option:</p>
+<p>The <code>Accept-Encoding</code> is set to <code>identity</code> to avoid exceptions being raised on servers that return malformed compressed responses, <a href="https://github.com/lostisland/faraday/issues/337">as explained here</a>.</p>
+
+<p>If you want to override the default headers then use the <code>headers</code> option:</p>
 
 <div class="highlight highlight-ruby"><pre><span class="pl-c"># Set the User-Agent header</span>
 page <span class="pl-k">=</span> <span class="pl-s3">MetaInspector</span>.<span class="pl-k">new</span>(<span class="pl-s1"><span class="pl-pds">'</span>example.com<span class="pl-pds">'</span></span>, <span class="pl-c1">:headers</span> =&gt; {<span class="pl-s1"><span class="pl-pds">'</span>User-Agent<span class="pl-pds">'</span></span> =&gt; <span class="pl-s1"><span class="pl-pds">'</span>My custom User-Agent<span class="pl-pds">'</span></span>})</pre></div>
